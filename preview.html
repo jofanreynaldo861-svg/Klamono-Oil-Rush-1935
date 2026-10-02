@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Klamono Oil Rush - Bab 2 Sejarah NNGPM</title>
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --accent-gold: #f59e0b;
+            --accent-blue: #3b82f6;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 10px;
+        }
+
+        .game-container {
+            width: 100%;
+            max-width: 800px;
+            max-height: 95vh;
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            border: 1px solid #334155;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* OPENING SCREEN */
+        .title-screen {
+            padding: 40px 24px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 500px;
+            background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        .title-badge {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--accent-gold);
+            border: 1px solid var(--accent-gold);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .title-screen h1 {
+            color: var(--text-light);
+            font-size: 2.2rem;
+            line-height: 1.25;
+            margin-bottom: 15px;
+        }
+
+        .title-screen h1 span {
+            color: var(--accent-gold);
+        }
+
+        .title-screen p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 540px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .game-stats-preview {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .stat-card {
+            flex: 1;
+            background: #0f172a;
+            border: 1px solid #334155;
+            padding: 12px 8px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-card .number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent-gold);
+        }
+
+        .stat-card .label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: #0f172a;
+            border: none;
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: 800;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+            transition: all 0.2s ease;
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+        }
+
+        /* GAMEPLAY SCREEN */
+        .game-screen {
+            display: none;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: #0f172a;
+            padding: 12px 20px;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stasiun-tag {
+            color: var(--accent-gold);
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .score-tag {
+            background-color: #1e293b;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: var(--accent-green);
+            border: 1px solid #334155;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            background-color: #0f172a;
+            height: 5px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-green));
+            width: 10%;
+            transition: width 0.3s ease;
+        }
+
+        .content-body {
+            padding: 20px;
+        }
+
+        .image-frame {
+            width: 100%;
+            height: 240px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #475569;
+            background-color: #020617;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+    .photo-wrap {
+        width: 100%;
+        height: 240px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 14px;
+        background: #e5e7eb;
+    }
+    .photo-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+    .photo-credit {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 7px 10px;
+        background: linear-gradient(transparent, rgba(0,0,0,.78));
+        color: #fff;
+        font-size: 11px;
+        line-height: 1.3;
+        text-align: left;
+    }
+
+
+        .image-frame svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .question-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-light);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .option-btn {
+            background-color: #0f172a;
+            color: var(--text-light);
+            border: 1px solid #334155;
+            padding: 12px 14px;
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            transition: all 0.2s ease;
+        }
+
+        .option-btn:hover {
+            border-color: var(--accent-gold);
+            background-color: #1e293b;
+        }
+
+        .option-btn.correct {
+            background-color: rgba(16, 185, 129, 0.2) !important;
+            border-color: var(--accent-green) !important;
+            color: #6ee7b7 !important;
+            font-weight: bold;
+        }
+
+        .option-btn.wrong {
+            background-color: rgba(239, 68, 68, 0.2) !important;
+            border-color: var(--accent-red) !important;
+            color: #fca5a5 !important;
+        }
+
+        .explanation-box {
+            margin-top: 15px;
+            padding: 14px;
+            background-color: #0f172a;
+            border-left: 4px solid var(--accent-blue);
+            border-radius: 0 8px 8px 0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: var(--text-muted);
+            display: none;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .explanation-box strong {
+            color: var(--accent-blue);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .footer {
+            padding: 15px 20px;
+            background-color: #0f172a;
+            border-top: 1px solid #334155;
+            display: flex;
+            justify-content: flex-end;
+            margin-top: auto;
+        }
+
+        /* TUTORIAL OVERLAY */
+        .tutorial-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.85);
+            z-index: 99;
+            display: none;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .tutorial-box {
+            position: absolute;
+            bottom: 25px;
+            right: 20px;
+            left: 20px;
+            max-width: 440px;
+            margin: 0 auto;
+            background-color: #0f172a;
+            border: 2px solid var(--accent-green);
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+        }
+
+        .tut-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .tut-step-tag {
+            background-color: #10b981;
+            color: #0f172a;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .tut-skip-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        .tut-title {
+            color: var(--text-light);
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .tut-desc {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            background-color: #1e293b;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+        }
+
+        .tut-nav-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tut-btn-prev {
+            background-color: #1e293b;
+            color: var(--text-light);
+            border: 1px solid #334155;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .tut-btn-next {
+            background-color: var(--accent-gold);
+            color: #0f172a;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* RESULT SCREEN */
+        .result-screen {
+            display: none;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .result-screen h2 {
+            color: var(--accent-gold);
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        .score-badge {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--accent-green);
+            margin: 15px 0;
+        }
+
+        @media (max-width: 480px) {
+            .title-screen h1 { font-size: 1.6rem; }
+            .question-text { font-size: 0.88rem; }
+            .option-btn { font-size: 0.8rem; padding: 10px 12px; }
+            .image-frame { height: 180px; }
+            .tutorial-box { bottom: 15px; left: 15px; right: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="game-container">
+
+    <!-- 1. TITLE SCREEN -->
+    <div class="title-screen" id="titleScreen">
+        <div class="title-badge">MODUL EVALUASI SEJARAH • BAB 2</div>
+        <h1>KLAMONO OIL RUSH:<br><span>EKSPLORASI NNGPM PAPUA</span></h1>
+        <p>Petualangan menyusuri 10 stasiun pipa minyak sejarah dari pedalaman hutan Klamono hingga Pelabuhan Ekspor Sorong.</p>
+        
+        <div class="game-stats-preview">
+            <div class="stat-card">
+                <div class="number">10</div>
+                <div class="label">Stasiun Pipa</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">HOTS</div>
+                <div class="label">Soal Analisis</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">100</div>
+                <div class="label">Skor Maksimal</div>
+            </div>
+        </div>
+
+        <button class="btn-primary" onclick="startGameWithTutorial()">MULAI PETUALANGAN</button>
+    </div>
+
+    <!-- 2. GAMEPLAY SCREEN -->
+    <div class="game-screen" id="gameScreen">
+        <div class="header">
+            <span class="stasiun-tag" id="stasiunTag">Stasiun 1/10</span>
+            <span class="score-tag" id="scoreTag">Skor: 0</span>
+        </div>
+
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="content-body">
+            <div class="image-frame" id="svgContainer">
+                <!-- SVG Foto Arsip Klasik akan dimuat di sini -->
+            </div>
+
+            <div class="question-text" id="questionText">Memuat pertanyaan...</div>
+
+            <div class="options-grid" id="optionsGrid"></div>
+
+            <div class="explanation-box" id="explanationBox">
+                <strong>Analisis Kritis Sejarah:</strong>
+                <span id="explanationText"></span>
+            </div>
+        </div>
+
+        <div class="footer">
+            <button class="btn-primary" id="nextBtn" style="display:none; width:auto; padding: 12px 24px;" onclick="nextQuestion()">Stasiun Berikutnya &rarr;</button>
+        </div>
+    </div>
+
+    <!-- 3. TUTORIAL OVERLAY -->
+    <div class="tutorial-overlay" id="tutorialOverlay">
+        <div class="tutorial-box">
+            <div class="tut-top-row">
+                <span class="tut-step-tag" id="tutStepTag">Langkah 1 dari 3</span>
+                <button class="tut-skip-btn" onclick="closeTutorial()">⏭ Lewati</button>
+            </div>
+            <div class="tut-title" id="tutTitle">Langkah 1: Menyusuri Stasiun Pipa</div>
+            <div class="tut-desc" id="tutDesc">Game ini mengajakmu menganalisis 10 pos sejarah eksplorasi minyak NNGPM dari pedalaman Klamono hingga pesisir Sorong.</div>
+            <div class="tut-nav-row">
+                <button class="tut-btn-prev" id="tutBtnPrev" onclick="prevTutorialStep()">← Kembali</button>
+                <button class="tut-btn-next" id="tutBtnNext" onclick="nextTutorialStep()">Lanjut →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. RESULT SCREEN -->
+    <div class="result-screen" id="resultScreen">
+        <h2>Eksplorasi Selesai!</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Kamu telah menyelesaikan seluruh stasiun analisis pipa Klamono–Sorong.</p>
+        <div class="score-badge" id="finalScore">0 / 100</div>
+        <p id="predikatText" style="font-weight: bold; margin-bottom: 25px; font-size: 1.1rem;"></p>
+        <button class="btn-primary" style="max-width: 100%;" onclick="restartGame()">Ulangi Dari Awal</button>
+    </div>
+
+</div>
+
+<script>
+    // VISUAL FOTO ARSIP REPUBLIK / KOLONIAL VINTAGE REALISTIS
+    const imageIllustrations = [
+        '<div class="photo-wrap"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Collectie%20Wereldmuseum%2C%20TM-FV-1876-133%2C%20Foto%2C%20%27Gezicht%20over%20het%20terrein%20van%20de%20Nederlands%20Nieuw%20Guinea%20Petrolium%20Maatschappij%20%28NNGPM%29%20op%20Sorong%27%2C%201945-1949.jpg" alt="Kompleks NNGPM di Sorong, 1945–1949" loading="eager"><div class="photo-credit">Kompleks NNGPM di Sorong, 1945–1949 · Wikimedia Commons / Wereldmuseum</div></div>',
+        '<div class="photo-wrap"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Collectie%20Wereldmuseum%2C%20TM-FV-1876-134%2C%20Foto%2C%20%27Pontons%20met%20hijskranen%20in%20de%20haven%20van%20de%20Nederlands%20Nieuw%20Guinea%20Petrolium%20Maatschappij%20%28NNGPM%29%20op%20Sorong%27%2C%201945-1949.jpg" alt="Pelabuhan NNGPM di Sorong, 1945–1949" loading="eager"><div class="photo-credit">Pelabuhan NNGPM di Sorong, 1945–1949 · Wikimedia Commons / Wereldmuseum</div></div>',
+        '<div class="photo-wrap"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/KITLV%20A86%20-%20Het%20aan%20elkaar%20lassen%20van%20de%20NIAM%20oliepijpleiding%20in%20Palembang%2C%20KITLV%2082228.tiff" alt="Pembangunan pipa minyak di Indonesia, 1935" loading="eager"><div class="photo-credit">Pembangunan pipa minyak di Indonesia, 1935 · Wikimedia Commons / KITLV</div></div>',
+        '<div class="photo-wrap"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Doom%20Island%201955.jpg" alt="Pulau Doom dekat Sorong, 1955" loading="eager"><div class="photo-credit">Pulau Doom dekat Sorong, 1955 · Wikimedia Commons</div></div>',
+        '<div class="photo-wrap"><img src="https://img.antarafoto.com/cache/1200x899/2024/06/12/pertamina-ep-papua-field-lapangan-produksi-migas-pertama-di-kabupaten-sorong-1bws9-dom.jpg" alt="Fasilitas produksi minyak dan gas Klamono" loading="eager"><div class="photo-credit">Fasilitas produksi minyak dan gas Klamono · ANTARA Foto</div></div>',
+        '<div class="photo-wrap"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Collectie%20Wereldmuseum%2C%20TM-FV-1876-133%2C%20Foto%2C%20%27Gezicht%20over%20het%20terrein%20van%20de%20Nederlands%20Nieuw%20Guinea%20Petrolium%20Maatschappij%20%28NNGPM%29%20op%20Sorong%27%2C%201945-1949.jpg" alt="Kawasan NNGPM di Sorong dengan fasilitas dan barak" loading="eager"><div class="photo-credit">Kawasan NNGPM di Sorong dengan fasilitas dan barak · Wikimedia Commons / Wereldmuseum</div></div>',
+        '<div class="photo-wrap"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Collectie%20Wereldmuseum%2C%20TM-FV-1876-134%2C%20Foto%2C%20%27Pontons%20met%20hijskranen%20in%20de%20haven%20van%20de%20Nederlands%20Nieuw%20Guinea%20Petrolium%20Maatschappij%20%28NNGPM%29%20op%20Sorong%27%2C%201945-1949.jpg" alt="Aktivitas bongkar-muat di pelabuhan NNGPM Sorong" loading="eager"><div class="photo-credit">Aktivitas bongkar-muat di pelabuhan NNGPM Sorong · Wikimedia Commons / Wereldmuseum</div></div>',
+        '<div class="photo-wrap"><img src="https://images.squarespace-cdn.com/content/v1/585f9adee58c620a62b8f554/463de0b1-91a5-446e-9a54-584a6faa6759/Klamono-09.jpg" alt="Pumpjack di lapangan minyak Klamono" loading="eager"><div class="photo-credit">Pumpjack di lapangan minyak Klamono · Peter Jan Haas</div></div>',
+        '<div class="photo-wrap"><img src="https://img.antarafoto.com/cache/1200x899/2024/06/12/pertamina-ep-papua-field-lapangan-produksi-migas-pertama-di-kabupaten-sorong-1bws9-dom.jpg" alt="Stasiun pengumpulan minyak Klamono" loading="eager"><div class="photo-credit">Stasiun pengumpulan minyak Klamono · ANTARA Foto</div></div>',
+        '<div class="photo-wrap"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/West%20Papua%20%28orthographic%20projection%29.svg" alt="Peta wilayah Papua Barat / Netherlands New Guinea" loading="eager"><div class="photo-credit">Peta wilayah Papua Barat / Netherlands New Guinea · Wikimedia Commons</div></div>',
+    ];
+
+    const questionsData = [
+        {
+            stasiun: "Stasiun 1 • Pedalaman Klamono",
+            question: "Mengapa pembentukan NNGPM sebagai konsorsium gabungan Shell, Stanvac, dan Caltex pada 1935 dianggap sebagai strategi geopolitik kolonial, bukan sekadar motif ekonomi biasa?",
+            options: [
+                "A. Karena konsorsium membagi risiko finansial masif di hutan terisolasi, sekaligus membentengi klaim teritorial kolonial Belanda di Pasifik.",
+                "B. Karena hukum kolonial Belanda mewajibkan perusahaan asing membagikan 50% hasil minyak bumi kepada badan usaha lokal.",
+                "C. Karena ketiga perusahaan berikrar menghentikan persaingan dagang dan mengalokasikan hasil tambang untuk dana PBB.",
+                "D. Karena konsorsium dibentuk atas instruksi Kerajaan Inggris guna menghalau ekspansi militer Amerika Serikat."
+            ],
+            correct: 0,
+            explanation: "Eksplorasi di hutan terisolasi Papua membutuhkan modal besar. Konsorsium NNGPM membagi risiko modal sekaligus menegaskan kehadiran teritorial Belanda di wilayah timur Nusantara."
+        },
+        {
+            stasiun: "Stasiun 2 • Ladang Minyak Klamono",
+            question: "Ditinjau dari perspektif Resource Curse (Kutukan Sumber Daya Alam), mengapa kekayaan Emas Hitam Klamono tidak meningkatkan taraf hidup masyarakat adat Papua pada masa kolonial?",
+            options: [
+                "A. Karena masyarakat lokal menolak menggunakan uang kertas dan memilih sistem barter barang.",
+                "B. Karena kualitas minyak mentah Klamono terlalu rendah sehingga harganya anjlok di pasar internasional.",
+                "C. Karena nilai tambah dan arus kapital ditarik ke luar negeri, sementara masyarakat lokal hanya dijadikan buruh berupah murah.",
+                "D. Karena pemerintah Belanda secara resmi menutup seluruh akses perdagangan di wilayah pesisir Sorong."
+            ],
+            correct: 2,
+            explanation: "Model eksploitasi kolonial menyedot nilai ekonomi hasil tambang ke negara induk/konsorsium asing tanpa membangun kapasitas ekonomi berkelanjutan bagi warga pribumi."
+        },
+        {
+            stasiun: "Stasiun 3 • Pemasangan Pipa Rawa",
+            question: "Dari sudut geografi-teknik abad ke-20, tantangan terbesar manakah yang membuktikan ekstremnya ekosistem tropis Papua saat pemasangan pipa Klamono–Sorong?",
+            options: [
+                "A. Ketiadaan material baja di pasar internasional akibat terputusnya jalur pelayaran Samudra Pasifik.",
+                "B. Adanya bencana pembekuan minyak secara masal akibat suhu dingin ekstrem di dataran rendah Sorong.",
+                "C. Kewajiban dari otoritas lokal untuk membangun jalur pipa yang tidak boleh melintasi daerah aliran sungai.",
+                "D. Tingginya laju korosi tanah rawa, kontur topografi yang sulit, serta ketiadaan akses jalan angkut modern."
+            ],
+            correct: 3,
+            explanation: "Hutan hujan tropis dengan kondisi rawa-rawa rapat serta ketiadaan jalan membuat pemindahan pipa baja sejauh ±50 km menjadi operasi logistik yang sangat berat."
+        },
+        {
+            stasiun: "Stasiun 4 • Kantor Konsorsium NNGPM",
+            question: "Mengapa kepemilikan saham NNGPM—di mana Stanvac & Caltex (AS) menguasai 60% saham melebihi Shell (Belanda - 40%)—menjadi fenomena unik di era kolonial?",
+            options: [
+                "A. Menunjukkan Belanda telah menyerahkan seluruh kedaulatan politik Papua kepada Amerika Serikat.",
+                "B. Mencerminkan ketergantungan modal dan teknologi Belanda pada korporasi Amerika untuk mengelola proyek berisiko tinggi.",
+                "C. Mengindikasikan bahwa perusahaan Amerika dilarang melakukan investasi langsung tanpa izin PBB.",
+                "D. Menggambarkan ketidakmampuan Shell memproduksi alat berat sehingga operasinya diserahkan ke Caltex."
+            ],
+            correct: 1,
+            explanation: "Meskipun Papua berada dalam kendali administrasi Belanda, dominasi kepemilikan modal Amerika (60%) membuktikan tingginya ketergantungan teknologi dan modal AS dalam proyek minyak raksasa."
+        },
+        {
+            stasiun: "Stasiun 5 • Stasiun Pompa Tekanan",
+            question: "Apa alasan teknis-sistematis dibalik keputusan NNGPM mendirikan stasiun pompa (pumping stations) di sepanjang jalur pipa Klamono–Sorong?",
+            options: [
+                "A. Untuk mendinginkan suhu minyak mentah agar tidak menguap akibat sengatan panas matahari tropis.",
+                "B. Untuk mengatasi penurunan tekanan hidraulik (pressure drop) akibat gesekan pipa dan perbedaan elevasi tanah.",
+                "C. Sebagai tempat pemisahan antara fraksi bensin, solar, dan minyak tanah sebelum dialirkan ke tanker.",
+                "D. Untuk membatasi volume minyak yang diangkut agar tidak melebihi kuota ekspor tahunan."
+            ],
+            correct: 1,
+            explanation: "Stasiun pompa berfungsi untuk mempertahankan tekanan dorong aliran minyak mentah agar tetap stabil menembus jarak puluhan kilometer dan kontur tanah naik-turun."
+        },
+        {
+            stasiun: "Stasiun 6 • Pemukiman Buruh Sorong",
+            question: "Praktik tata ruang Kota Sorong masa NNGPM (perbedaan pemukiman Pulau Doom/Sele vs pemukiman buruh) secara sosiologis mencerminkan fenomena...",
+            options: [
+                "A. Segregasi spasial berbasis rasial dan kelas sosial yang diciptakan untuk memelihara hierarki kekuasaan kolonial.",
+                "B. Efisiensi tata kota modern yang mengelompokkan pekerja berdasarkan tingkat keahlian bahasa asing.",
+                "C. Kebijakan pemerataan fasilitas yang disesuaikan dengan adaptasi suhu tubuh pekerja lokal dan Eropa.",
+                "D. Upaya perlindungan cagar budaya agar pola pemukiman asli masyarakat tidak terganggu industri."
+            ],
+            correct: 0,
+            explanation: "Sistem kolonial memisahkan ruang hidup elit Eropa dengan buruh lokal secara fisik dan fasilitas untuk menegaskan strata dominasi sosial dan ekonomi."
+        },
+        {
+            stasiun: "Stasiun 7 • Pelabuhan Ekspor Sorong",
+            question: "Penemuan minyak di Klamono mengubah fungsi spasial Sorong secara signifikan. Analisis manakah yang paling tepat menggambarkan transformasi tersebut?",
+            options: [
+                "A. Dari benteng pertahanan militer menjadi pusat kawasan konservasi laut nasional.",
+                "B. Dari kawasan pertanian tradisional menjadi pusat riset geologi terbesar di Asia Tenggara.",
+                "C. Dari pos perdagangan pesisir terisolasi menjadi simpul logistik dan pelabuhan ekspor energi skala internasional.",
+                "D. Dari kota pelabuhan transit menjadi pusat pemukiman padat berbasis industri pertekstilan."
+            ],
+            correct: 2,
+            explanation: "Aktivitas NNGPM mengubah peta wilayah Sorong dari pos pesisir kecil menjadi pusat simpul maritim dan energi baru di wilayah timur."
+        },
+        {
+            stasiun: "Stasiun 8 • Pengeboran Klamono (1935)",
+            question: "Penemuan sumur minyak Klamono pada 1935 menjadi titik balik eksplorasi. Mengapa penemuan ini begitu krusial bagi peta energi dunia jelang Perang Dunia II?",
+            options: [
+                "A. Karena Klamono merupakan satu-satunya ladang minyak bumi yang tersisa di Belahan Bumi Selatan.",
+                "B. Karena produksi Klamono langsung digunakan untuk membiayai operasional tentara sekutu di Eropa.",
+                "C. Karena cadangan tersebut berhasil diubah seluruhnya menjadi bahan bakar sintetis dalam waktu singkat.",
+                "D. Karena membuktikan keberadaan cadangan hidrokarbon komersial di kawasan Pasifik Barat yang diperebutkan kekuatan global."
+            ],
+            correct: 3,
+            explanation: "Penemuan Klamono pada 1935 membuktikan potensi minyak skala besar di Pasifik Barat yang menjadi daya tarik strategis dalam kompetisi geopolitik global."
+        },
+        {
+            stasiun: "Stasiun 9 • Pusat Listrik dan AC",
+            question: "Mengapa fasilitas mewah ber-AC dan jaringan listrik modern pada era 1940-an hanya terkonsentrasi di Pulau Doom dan Sele?",
+            options: [
+                "A. Karena wilayah tersebut difungsikan sebagai eksklave eksklusif bagi pejabat dan staf teknis Eropa NNGPM.",
+                "B. Karena kontur tanah di daratan utama Sorong dianggap tidak stabil untuk dipasangi jaringan listrik.",
+                "C. Karena adanya penolakan masyarakat lokal daratan utama terhadap masuknya teknologi modern Belanda.",
+                "D. Karena pulau-pulau tersebut berada di luar wilayah hukum NNGPM sehingga bebas pajak."
+            ],
+            correct: 0,
+            explanation: "Pulau Doom dan kawasan Sele dijadikan pusat kekuatan administrasi dan hunian eksklusif bagi staf asing NNGPM yang dilengkapi fasilitas paling modern di zaman tersebut."
+        },
+        {
+            stasiun: "Stasiun 10 • Konsesi Papua Barat",
+            question: "Nama Nederlandsche Nieuw Guinee Petroleum Maatschappij (NNGPM) memiliki identitas entitas bisnis kolonial. Apa makna ekonomis penyertaan 'Nieuw Guinee'?",
+            options: [
+                "A. Penanda bahwa seluruh keuntungan perusahaan akan dikembalikan untuk pembangunan Papua.",
+                "B. Bentuk penghormatan maskapai asing terhadap hak ulayat masyarakat adat Papua.",
+                "C. Penetapan batas konsesi hukum eksplorasi minyak spesifik pada wilayah teritorial Papua bagian barat.",
+                "D. Persyaratan dari pemerintah lokal agar perusahaan dapat terdaftar di bursa saham internasional."
+            ],
+            correct: 2,
+            explanation: "Nama teritorial berfungsi menegaskan yurisdiksi konsesi hak tambang yang diberikan oleh pemerintah kolonial Belanda khusus untuk wilayah Papua bagian barat."
+        }
+    ];
+
+    let currentTutorialStep = 0;
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let answered = false;
+
+    const tutorialSteps = [
+        {
+            title: "Langkah 1: Stasiun Pipa Minyak",
+            desc: "Kamu akan menyusuri 10 pos analisis sejarah NNGPM dari pedalaman Klamono hingga Pelabuhan Sorong."
+        },
+        {
+            title: "Langkah 2: Menjawab Pertanyaan HOTS",
+            desc: "Pilih salah satu dari 4 opsi jawaban. Setiap jawaban tepat bernilai +10 poin."
+        },
+        {
+            title: "Langkah 3: Pembahasan Historis",
+            desc: "Setiap selesai menjawab, analisis kritis akan muncul untuk memperdalam wawasan Bab 2 kamu."
+        }
+    ];
+
+    function startGameWithTutorial() {
+        document.getElementById('titleScreen').style.display = 'none';
+        document.getElementById('gameScreen').style.display = 'flex';
+        document.getElementById('tutorialOverlay').style.display = 'block';
+        loadQuestion();
+        updateTutorialOverlay();
+    }
+
+    function updateTutorialOverlay() {
+        const step = tutorialSteps[currentTutorialStep];
+        document.getElementById('tutStepTag').textContent = `Langkah ${currentTutorialStep + 1} dari 3`;
+        document.getElementById('tutTitle').textContent = step.title;
+        document.getElementById('tutDesc').textContent = step.desc;
+
+        document.getElementById('tutBtnPrev').style.visibility = (currentTutorialStep === 0) ? 'hidden' : 'visible';
+        
+        if (currentTutorialStep === tutorialSteps.length - 1) {
+            document.getElementById('tutBtnNext').textContent = "Mulai Bermain ✔";
+        } else {
+            document.getElementById('tutBtnNext').textContent = "Lanjut →";
+        }
+    }
+
+    function nextTutorialStep() {
+        if (currentTutorialStep < tutorialSteps.length - 1) {
+            currentTutorialStep++;
+            updateTutorialOverlay();
+        } else {
+            closeTutorial();
+        }
+    }
+
+    function prevTutorialStep() {
+        if (currentTutorialStep > 0) {
+            currentTutorialStep--;
+            updateTutorialOverlay();
+        }
+    }
+
+    function closeTutorial() {
+        document.getElementById('tutorialOverlay').style.display = 'none';
+    }
+
+    function loadQuestion() {
+        answered = false;
+        const q = questionsData[currentQuestionIndex];
+        
+        document.getElementById('progressBar').style.width = `${((currentQuestionIndex + 1) / questionsData.length) * 100}%`;
+        document.getElementById('stasiunTag').textContent = `${q.stasiun} (${currentQuestionIndex + 1}/10)`;
+        document.getElementById('scoreTag').textContent = `Skor: ${score}`;
+        
+        document.getElementById('svgContainer').innerHTML = imageIllustrations[currentQuestionIndex];
+        
+        document.getElementById('questionText').textContent = q.question;
+        
+        const optionsGrid = document.getElementById('optionsGrid');
+        optionsGrid.innerHTML = '';
+        q.options.forEach((optText, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.textContent = optText;
+            btn.onclick = () => selectOption(idx);
+            optionsGrid.appendChild(btn);
+        });
+
+        document.getElementById('explanationBox').style.display = 'none';
+        document.getElementById('nextBtn').style.display = 'none';
+    }
+
+    function selectOption(selectedIndex) {
+        if (answered) return;
+        answered = true;
+
+        const q = questionsData[currentQuestionIndex];
+        const buttons = document.getElementById('optionsGrid').children;
+
+        if (selectedIndex === q.correct) {
+            buttons[selectedIndex].classList.add('correct');
+            score += 10;
+            document.getElementById('scoreTag').textContent = `Skor: ${score}`;
+        } else {
+            buttons[selectedIndex].classList.add('wrong');
+            buttons[q.correct].classList.add('correct');
+        }
+
+        document.getElementById('explanationText').textContent = q.explanation;
+        document.getElementById('explanationBox').style.display = 'block';
+        document.getElementById('nextBtn').style.display = 'block';
+    }
+
+    function nextQuestion() {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questionsData.length) {
+            loadQuestion();
+        } else {
+            showResults();
+        }
+    }
+
+    function showResults() {
+        document.getElementById('gameScreen').style.display = 'none';
+        document.getElementById('resultScreen').style.display = 'block';
+
+        document.getElementById('finalScore').textContent = `${score} / 100`;
+
+        const predikat = document.getElementById('predikatText');
+        if (score >= 80) {
+            predikat.textContent = "Predikat: Sangat Baik (Master Geopolitik Minyak Papua)";
+            predikat.style.color = "#10b981";
+        } else if (score >= 60) {
+            predikat.textContent = "Predikat: Cukup (Analis Sejarah Kolonial)";
+            predikat.style.color = "#f59e0b";
+        } else {
+            predikat.textContent = "Predikat: Perlu Pendalaman Materi Bab 2";
+            predikat.style.color = "#ef4444";
+        }
+    }
+
+    function restartGame() {
+        currentQuestionIndex = 0;
+        score = 0;
+        currentTutorialStep = 0;
+        document.getElementById('resultScreen').style.display = 'none';
+        document.getElementById('titleScreen').style.display = 'flex';
+    }
+</script>
+
+</body>
+</html>
